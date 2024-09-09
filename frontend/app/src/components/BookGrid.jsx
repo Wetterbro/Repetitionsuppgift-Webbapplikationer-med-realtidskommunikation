@@ -40,7 +40,8 @@ export default function BookGrid({ books, onBookChanged }) {
         
     return (
         <div className="mt-10 w-full">
-            {isModalOpen && <Modal book={editBook} onUpdateBook={handleUpdateBook} onClose={() => setIsModalOpen(false)} />}
+            {isModalOpen &&
+                <Modal book={editBook} onUpdateBook={handleUpdateBook} onClose={() => setIsModalOpen(false)}/>}
             <table className="table-auto w-full text-left whitespace-no-wrap">
                 <thead>
                 <tr className="text-sm font-medium text-gray-700 dark:text-gray-400 bg-gray-200 dark:bg-gray-800 rounded-lg">

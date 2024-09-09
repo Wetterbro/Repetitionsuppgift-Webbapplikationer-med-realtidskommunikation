@@ -1,10 +1,11 @@
-﻿"use Server";
-const axios = require('axios');
+﻿const axios = require('axios');
+
+const BASE_URL = 'http://localhost:5062/api';
 
 // Get all books
-async function getBooks() {
+export async function getBooks() {
     try {
-        const response = await axios.get('http://localhost:5062/api/book');
+        const response = await axios.get(`${BASE_URL}/book`);
         return response.data;
     } catch (error) {
         console.error(`Error: ${error}`);
@@ -13,9 +14,9 @@ async function getBooks() {
 }
 
 // Get a book by id
-async function getBookById(id) {
+export async function getBookById(id) {
     try {
-        const response = await axios.get(`http://localhost:5062/api/book/${id}`);
+        const response = await axios.get(`${BASE_URL}/book/${id}`);
         return response.data;
     } catch (error) {
         console.error(`Error: ${error}`);
@@ -23,9 +24,9 @@ async function getBookById(id) {
 }
 
 // Add a new book
-async function addBook(book) {
+export async function addBook(book) {
     try {
-        const response = await axios.post('http://localhost:5062/api/book', book);
+        const response = await axios.post(`${BASE_URL}/book`, book);
         return response.data;
     } catch (error) {
         console.error(`Error: ${error}`);
@@ -33,10 +34,10 @@ async function addBook(book) {
 }
 
 // Update a book
-async function updateBook(id, book) {
-    console.log("From update! "+book);
+export async function updateBook(id, book) {
+    console.log("From update! " + JSON.stringify(book));
     try {
-        const response = await axios.put(`http://localhost:5062/api/book/${id}`, book, {
+        const response = await axios.put(`${BASE_URL}/book/${id}`, book, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -48,19 +49,12 @@ async function updateBook(id, book) {
 }
 
 // Delete a book
-async function deleteBook(id) {
+export async function deleteBook(id) {
     try {
-        const response = await axios.delete(`http://localhost:5062/api/book/${id}`);
+        const response = await axios.delete(`${BASE_URL}/book/${id}`);
         return response.data;
     } catch (error) {
         console.error(`Error: ${error}`);
     }
 }
 
-module.exports = {
-    getBooks,
-    getBookById,
-    addBook,
-    updateBook,
-    deleteBook
-};
